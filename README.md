@@ -168,3 +168,98 @@ Program:
 - Module
 - Package
 - Library
+
+#### 对于 JavaScript 我们重点参看 A Grammar Summary':
+
+##### 'Lexical Grammar'
+
+- SourceCharacter ::
+  any Unicode code point
+
+关于 unicode 参看：
+`http://www.fileformat.info/info/unicode/block/index.htm`
+
+```
+for (let i = 0; i < 128; i++) {
+  // console.log(String.fromCharCode(i));
+  document.write(
+    i +
+      '<span style="background-color:green">' +
+      String.fromCharCode(i) +
+      '</span></br>'
+  );
+}
+```
+
+转换 unicode: `"黄".codePointAt(1).toString(16)`
+
+- InputElementDiv ::
+  WhiteSpace
+  LineTerminator
+  Comment
+  CommonToken
+  DivPunctuator
+  RightBracePunctuator
+
+对上面的元素进一步分析得到，
+
+- WhiteSpace ::
+  <TAB> `'\t'.codePointAt(0).toString(16)`
+  <VT>
+  <FF>
+  <SP> space 就是空格键
+  <NBSP> no-break-space 用来处理排版的，让其中的词不会断开，也可以使用 "\u00A0"
+  <ZWNBSP> zero-width-no-break-space "\uFEFF" 但是没法找到，bitordermust
+  <USP>
+
+- LineTerminator ::
+  <LF> line feed /n 建议使用 /n `'\n'.codePointAt(0).toString(16)` '\u000a'
+  <CR> carriage return 回车 /r `'\r'.codePointAt(0).toString(16)` '\u000d'
+  <LS> 不建议使用后两个，因为超出了 unicode，
+  <PS>
+
+- Comment ::
+  MultiLineComment '/\* \*/'
+  SingleLineComment '// '
+
+- CommonToken ::
+  IdentifierName
+  Keywords
+  Punctuator
+  NumericLiteral
+  StringLiteral
+  Template
+
+- IdentifierName ::
+  IdentifierStart
+  IdentifierName IdentifierPart
+
+- Literal
+  String
+  Number
+  Boolean
+  Object
+  Null
+  Undefined
+  Symbol
+
+- Number
+  DecimalLiteral .toString() parseInt("100", 2)
+  BinaryIntegerLiteral
+  OctalInterLiteral
+  HexIntegerLiteral
+
+一些注意点：
+Number.MAX_SAFE_INTEGER.toString(16)
+Math.abs(0.1 + 0.2 - 0.3) <= Number.EPSILON
+如果想让精确，最好都转化为整数
+
+One of escape sequence
+
+\n '\0x000A'
+\b '0x0008'
+\r '0x000D'
+\t '0x0009'
+\" '0x0022'  
+\' '0x0027'
+\\ '0x005C'

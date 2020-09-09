@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // for (let i = 0; i < 128; i++) {
+      //   // console.log(String.fromCharCode(i));
+      //   document.write(
+      //     i +
+      //       '<span style="background-color:lightgreen">' +
+      //       String.fromCharCode(i) +
+      //       '</span></br>'
+      //   );
+      // }
+      let a = 0.1;
+      let b = 0.2;
+
+      const intarr = new Uint8Array(8);
+      const memory = new Float32Array(intarr.buffer);
+      intarr[0] = 0b00000000;
+      intarr[1] = 0b00001000;
+
+      // const memory = new Float64Array(1);
+      // memory[0] = a;
+      // console.log(memory);
+      // const intarr = new Uint8Array(memory.buffer);
+      // for (let i = 0; i < 8; i++) {
+      //   let s = intarr[i].toString(2);
+      //   console.log(new Array(9 - s.length).join('0') + s);
+      // }
+      // console.log(intarr);
+    </script>
+  </body>
+</html>
